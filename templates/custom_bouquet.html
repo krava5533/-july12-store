@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container narrow panel">
+    <h1>Custom Bouquet Request</h1>
+    <form method="post" enctype="multipart/form-data">
+      <label>Name</label><input name="name" required>
+      <label>Phone</label><input name="phone" required>
+      <label>Email</label><input type="email" name="email">
+      <label>Budget</label><input name="budget">
+      <label>Colors</label><input name="colors">
+      <label>Occasion</label><input name="occasion">
+      <label>Delivery date</label><input type="date" name="delivery_date">
+      <label>Address</label><input name="address">
+      <label>Reference image</label><input type="file" name="reference_image" accept="image/*">
+      <label>Notes</label><textarea name="notes"></textarea>
+      <div style="margin-top:16px;"><button class="btn" type="submit">Send Request</button></div>
+    </form>
+  </div>
+</section>
+{% endblock %}

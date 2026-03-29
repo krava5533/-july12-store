@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="admin-top">
+      <h1>Products</h1>
+      <div class="row-inline">
+        <a class="btn" href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+        <a class="btn" href="{{ url_for('admin_new_product') }}">Add Product</a>
+      </div>
+    </div>
+
+    <div class="panel">
+      {% for product in products %}
+      <div class="summary-row">
+        <div class="row-inline">
+          {% if product.image_path %}
+          <img src="{{ product.image_path }}" width="56" height="56" style="object-fit:cover;border-radius:10px;">
+          {% endif %}
+          <div>
+            <strong>{{ product.name }}</strong>
+            <div class="small">{{ product.category }} • ${{ '%.2f'|format(product.price) }} • order {{ product.sort_order }}</div>
+          </div>
+        </div>
+        <div class="row-inline">
+          <a class="btn" href="{{ url_for('admin_edit_product', product_id=product.id) }}">Edit</a>
+          <form method="post" action="{{ url_for('admin_delete_product', product_id=product.id) }}">
+            <button class="btn danger" type="submit">Delete</button>
+          </form>
+        </div>
+      </div>
+      {% else %}
+      <p>No products yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

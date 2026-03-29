@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container narrow">
+    <div class="admin-top">
+      <h1>Edit Category</h1>
+      <a class="btn" href="{{ url_for('admin_categories') }}">Back</a>
+    </div>
+    <div class="panel">
+      <form method="post">
+        <label>Name</label><input name="name" value="{{ category.name if category else '' }}">
+        <label>Sort order</label><input name="sort_order" type="number" value="{{ category.sort_order if category else 0 }}">
+        <label><input type="checkbox" name="visible" {% if category and category.visible %}checked{% endif %}> Visible</label>
+        <div style="margin-top:16px;"><button class="btn" type="submit">Save Category</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

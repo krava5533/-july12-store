@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="admin-top">
+      <h1>Categories</h1>
+      <div class="row-inline">
+        <a class="btn" href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+      </div>
+    </div>
+
+    <div class="grid admin-grid">
+      <div class="panel">
+        <h3>Add Category</h3>
+        <form method="post">
+          <label>Name</label><input name="name">
+          <label>Sort order</label><input name="sort_order" type="number">
+          <label><input type="checkbox" name="visible" checked> Visible</label>
+          <div style="margin-top:16px;"><button class="btn" type="submit">Add</button></div>
+        </form>
+      </div>
+
+      <div class="panel">
+        <h3>Current Categories</h3>
+        {% for category in categories %}
+        <div class="summary-row">
+          <div>
+            <strong>{{ category.name }}</strong>
+            <div class="small">order {{ category.sort_order }} • {% if category.visible %}visible{% else %}hidden{% endif %}</div>
+          </div>
+          <div class="row-inline">
+            <a class="btn" href="{{ url_for('admin_edit_category', category_id=category.id) }}">Edit</a>
+            <form method="post" action="{{ url_for('admin_delete_category', category_id=category.id) }}">
+              <button class="btn danger" type="submit">Delete</button>
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

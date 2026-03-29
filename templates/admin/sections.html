@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container narrow">
+    <div class="admin-top">
+      <h1>Sections</h1>
+      <a class="btn" href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+    </div>
+    <div class="panel">
+      <form method="post">
+        <label><input type="checkbox" name="announcement" {% if sections.get('announcement') %}checked{% endif %}> Announcement bar</label>
+        <label><input type="checkbox" name="hero" {% if sections.get('hero') %}checked{% endif %}> Hero</label>
+        <label><input type="checkbox" name="categories" {% if sections.get('categories') %}checked{% endif %}> Categories</label>
+        <label><input type="checkbox" name="best_sellers" {% if sections.get('best_sellers') %}checked{% endif %}> Best Sellers</label>
+        <label><input type="checkbox" name="luxury" {% if sections.get('luxury') %}checked{% endif %}> Luxury Collection</label>
+        <label><input type="checkbox" name="custom_bouquet" {% if sections.get('custom_bouquet') %}checked{% endif %}> Custom Bouquet CTA</label>
+        <label><input type="checkbox" name="info" {% if sections.get('info') %}checked{% endif %}> Info Cards</label>
+        <div style="margin-top:16px;"><button class="btn" type="submit">Save Structure</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

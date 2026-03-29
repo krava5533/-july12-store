@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container narrow">
+    <div class="admin-top">
+      <h1>Taxes</h1>
+      <a class="btn" href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+    </div>
+    <div class="panel">
+      <form method="post">
+        <label>Tax Name</label><input name="tax_name" value="{{ settings.get('tax_name','HST') }}">
+        <label>Tax Rate %</label><input name="tax_rate" value="{{ settings.get('tax_rate','13') }}">
+        <div style="margin-top:16px;"><button class="btn" type="submit">Save Taxes</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

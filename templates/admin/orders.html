@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="admin-top">
+      <h1>Orders</h1>
+      <a class="btn" href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+    </div>
+    <div class="panel">
+      {% for order in orders %}
+      <div class="summary-row">
+        <div>
+          <strong>{{ order.order_number }}</strong>
+          <div class="small">{{ order.customer_name }} • {{ order.city }} • ${{ '%.2f'|format(order.total) }}</div>
+        </div>
+        <form method="post" action="{{ url_for('admin_order_status', order_id=order.id) }}" class="row-inline">
+          <select name="order_status">
+            {% for s in ['New','Preparing','Out for delivery','Delivered'] %}
+            <option value="{{ s }}" {% if order.order_status == s %}selected{% endif %}>{{ s }}</option>
+            {% endfor %}
+          </select>
+          <button class="btn" type="submit">Update</button>
+        </form>
+      </div>
+      {% else %}
+      <p>No orders yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

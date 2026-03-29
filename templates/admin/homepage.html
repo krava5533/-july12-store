@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container narrow">
+    <div class="admin-top">
+      <h1>Homepage</h1>
+      <a class="btn" href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+    </div>
+    <div class="panel">
+      <form method="post" enctype="multipart/form-data">
+        <label>Hero Title</label><input name="hero_title" value="{{ settings.get('hero_title','') }}">
+        <label>Hero Subtitle</label><input name="hero_subtitle" value="{{ settings.get('hero_subtitle','') }}">
+        <label>Button Text</label><input name="hero_button_text" value="{{ settings.get('hero_button_text','') }}">
+        <label>Hero Background URL</label><input name="hero_background" value="{{ settings.get('hero_background','') }}">
+        <label>Upload Hero Background</label><input type="file" name="hero_background_file" accept="image/*">
+        <label>Announcement Bar</label><input name="announcement_bar" value="{{ settings.get('announcement_bar','') }}">
+        <label>Footer Text</label><input name="footer_text" value="{{ settings.get('footer_text','') }}">
+        <div style="margin-top:16px;"><button class="btn" type="submit">Save Homepage</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

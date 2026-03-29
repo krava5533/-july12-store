@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container narrow">
+    <div class="admin-top">
+      <h1>Store Settings</h1>
+      <a class="btn" href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+    </div>
+    <div class="panel">
+      <form method="post">
+        <label>Store Name</label><input name="store_name" value="{{ settings.get('store_name','July12') }}">
+        <label>Currency</label><input name="store_currency" value="{{ settings.get('store_currency','cad') }}">
+        <div style="margin-top:16px;"><button class="btn" type="submit">Save Settings</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

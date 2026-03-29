@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="admin-top">
+      <h1>Admin Dashboard</h1>
+      <a class="btn" href="{{ url_for('admin_logout') }}">Logout</a>
+    </div>
+
+    <div class="grid admin-grid">
+      <a class="admin-card" href="{{ url_for('admin_products') }}"><strong>Products</strong><span>{{ total_products }}</span></a>
+      <a class="admin-card" href="{{ url_for('admin_categories') }}"><strong>Categories</strong><span>Manage menu</span></a>
+      <a class="admin-card" href="{{ url_for('admin_homepage') }}"><strong>Homepage</strong><span>Hero + footer</span></a>
+      <a class="admin-card" href="{{ url_for('admin_sections') }}"><strong>Sections</strong><span>Show / hide blocks</span></a>
+      <a class="admin-card" href="{{ url_for('admin_orders') }}"><strong>Orders</strong><span>{{ total_orders }}</span></a>
+      <a class="admin-card" href="{{ url_for('admin_custom_orders') }}"><strong>Custom Orders</strong><span>{{ total_custom }}</span></a>
+      <a class="admin-card" href="{{ url_for('admin_delivery') }}"><strong>Delivery + Uber</strong><span>GTA zones</span></a>
+      <a class="admin-card" href="{{ url_for('admin_taxes') }}"><strong>Taxes</strong><span>HST settings</span></a>
+      <a class="admin-card" href="{{ url_for('admin_payments') }}"><strong>Payments</strong><span>Stripe keys</span></a>
+      <a class="admin-card" href="{{ url_for('admin_social') }}"><strong>Social + Logo</strong><span>Brand assets</span></a>
+      <a class="admin-card" href="{{ url_for('admin_settings') }}"><strong>Store Settings</strong><span>Name + currency</span></a>
+    </div>
+
+    <div class="panel" style="margin-top:20px;">
+      <h3>Latest Orders</h3>
+      {% for order in latest_orders %}
+      <div class="summary-row">
+        <div>
+          <strong>{{ order.order_number }}</strong>
+          <div class="small">{{ order.customer_name }} • {{ order.city }}</div>
+        </div>
+        <strong>{{ order.order_status }}</strong>
+      </div>
+      {% else %}
+      <p>No orders yet.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container narrow">
+    <div class="admin-top">
+      <h1>Payments</h1>
+      <a class="btn" href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+    </div>
+    <div class="panel">
+      <form method="post">
+        <label>Stripe Public Key</label><input name="stripe_public_key" value="{{ settings.get('stripe_public_key','') }}">
+        <label>Stripe Secret Key</label><input name="stripe_secret_key" value="{{ settings.get('stripe_secret_key','') }}">
+        <div style="margin-top:16px;"><button class="btn" type="submit">Save Payments</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

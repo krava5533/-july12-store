@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block content %}
+{% if sections.get('hero', True) %}
+<header class="hero" style="background-image:linear-gradient(180deg, rgba(39,20,29,.18), rgba(39,20,29,.38)), url('{{ settings.get('hero_background','') }}');">
+  <div class="hero-inner">
+    <h1>{{ settings.get('hero_title','July12') }}</h1>
+    <p>{{ settings.get('hero_subtitle','Luxury Flowers & Same-Day Delivery in GTA') }}</p>
+    <a class="cta-btn" href="#catalog">{{ settings.get('hero_button_text','Shop Now') }}</a>
+  </div>
+</header>
+{% endif %}
+
+{% if sections.get('categories', True) %}
+<nav class="category-bar">
+  {% for category in categories %}
+  <a href="#catalog">{{ category.name }}</a>
+  {% endfor %}
+</nav>
+{% endif %}
+
+{% if sections.get('best_sellers', True) %}
+<section class="section" id="catalog">
+  <div class="container">
+    <div class="section-head">
+      <h2>Best Sellers</h2>
+      <a href="{{ url_for('custom_bouquet') }}">Design Your Bouquet</a>
+    </div>
+    <div class="grid products-grid">
+      {% for product in featured %}
+      <article class="card">
+        <a href="{{ url_for('product_detail', product_id=product.id) }}">
+          <div class="product-image" {% if product.image_path %}style="background-image:url('{{ product.image_path }}');"{% endif %}></div>
+        </a>
+        <div class="product-copy">
+          <h3>{{ product.name }}</h3>
+          <p>${{ '%.2f'|format(product.price) }}</p>
+          <form method="post" action="{{ url_for('add_to_cart', product_id=product.id) }}">
+            <input type="hidden" name="qty" value="1">
+            <button class="btn" type="submit">Add to Cart</button>
+          </form>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if sections.get('luxury', True) %}
+<section class="section alt">
+  <div class="container">
+    <div class="section-head">
+      <h2>Luxury Collection</h2>
+      <span class="small">Premium floral styling</span>
+    </div>
+    <div class="grid products-grid">
+      {% for product in luxury %}
+      <article class="card">
+        <a href="{{ url_for('product_detail', product_id=product.id) }}">
+          <div class="product-image" {% if product.image_path %}style="background-image:url('{{ product.image_path }}');"{% endif %}></div>
+        </a>
+        <div class="product-copy">
+          <h3>{{ product.name }}</h3>
+          <p>${{ '%.2f'|format(product.price) }}</p>
+          <form method="post" action="{{ url_for('add_to_cart', product_id=product.id) }}">
+            <input type="hidden" name="qty" value="1">
+            <button class="btn" type="submit">Add</button>
+          </form>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if sections.get('custom_bouquet', True) %}
+<section class="section">
+  <div class="container panel callout">
+    <div>
+      <h2>Need a custom bouquet?</h2>
+      <p>Create a special order with your budget, colors and occasion.</p>
+    </div>
+    <a class="cta-btn" href="{{ url_for('custom_bouquet') }}">Start Custom Order</a>
+  </div>
+</section>
+{% endif %}
+
+{% if sections.get('info', True) %}
+<section class="section">
+  <div class="container grid info-grid">
+    <div class="info-card">
+      <h3>Delivery</h3>
+      <p>{{ settings.get('zone1_cities','') }}, {{ settings.get('zone2_cities','') }}</p>
+    </div>
+    <div class="info-card">
+      <h3>Tax</h3>
+      <p>{{ settings.get('tax_name','HST') }} {{ settings.get('tax_rate','13') }}%</p>
+    </div>
+    <div class="info-card">
+      <h3>Instagram</h3>
+      <p>{{ settings.get('instagram_url','') }}</p>
+    </div>
+    <div class="info-card">
+      <h3>Phone</h3>
+      <p>{{ settings.get('phone','') }}</p>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

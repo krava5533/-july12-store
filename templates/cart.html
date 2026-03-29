@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1>Your Cart</h1>
+    {% if not items %}
+    <p>Cart is empty.</p>
+    {% else %}
+    <form method="post" action="{{ url_for('update_cart') }}">
+      <div class="panel">
+        {% for item in items %}
+        <div class="summary-row">
+          <div>
+            <strong>{{ item.name }}</strong>
+            <div class="small">${{ '%.2f'|format(item.price) }}</div>
+          </div>
+          <div class="row-inline">
+            <input class="qty" type="number" name="qty_{{ item.id }}" value="{{ item.qty }}" min="0">
+            <strong>${{ '%.2f'|format(item.line_total) }}</strong>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="panel" style="margin-top:16px;">
+        <p>Subtotal: <strong>${{ '%.2f'|format(subtotal) }}</strong></p>
+        <div class="row-inline">
+          <button class="btn" type="submit">Update Cart</button>
+          <a class="cta-btn" href="{{ url_for('checkout') }}">Checkout</a>
+        </div>
+      </div>
+    </form>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

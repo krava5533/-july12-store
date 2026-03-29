@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container narrow">
+    <div class="admin-top">
+      <h1>Social + Logo</h1>
+      <a class="btn" href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+    </div>
+    <div class="panel">
+      <form method="post" enctype="multipart/form-data">
+        <label>Instagram URL</label><input name="instagram_url" value="{{ settings.get('instagram_url','') }}">
+        <label>Phone</label><input name="phone" value="{{ settings.get('phone','') }}">
+        <label>Email</label><input name="email" value="{{ settings.get('email','') }}">
+        <label>WhatsApp</label><input name="whatsapp" value="{{ settings.get('whatsapp','') }}">
+        <label>Logo URL</label><input name="logo_url" value="{{ settings.get('logo_url','') }}">
+        <label>Upload Logo</label><input type="file" name="logo_file" accept="image/*,.svg">
+        <div style="margin-top:16px;"><button class="btn" type="submit">Save Social</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

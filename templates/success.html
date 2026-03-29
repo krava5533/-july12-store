@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="section">
+  <div class="container panel center">
+    <h1>Thank you for your order 🌸</h1>
+    {% if order %}
+    <p>Order: <strong>{{ order.order_number }}</strong></p>
+    <p>Status: <strong>{{ order.order_status }}</strong></p>
+    <p>Payment: <strong>{{ order.payment_status }}</strong></p>
+    {% endif %}
+    <a class="cta-btn" href="{{ url_for('home') }}">Back to Home</a>
+  </div>
+</section>
+{% endblock %}
