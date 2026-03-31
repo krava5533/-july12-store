@@ -181,7 +181,7 @@ def init_db():
         "hero_button_text": "Shop Now",
         "hero_background": "",
         "instagram_url": "https://www.instagram.com/july12.ca",
-        "phone": "+1 (647) 000-0000",
+        "phone": "+1 (437)7995775",
         "email": "",
         "whatsapp": "",
         "tax_name": "HST",
